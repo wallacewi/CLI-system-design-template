@@ -1,3 +1,5 @@
+using static NavigationSystem.Utilities.KeyValidation;
+
 namespace NavigationSystem;
 
 public static class NavigationMenu
@@ -31,21 +33,7 @@ public static class NavigationMenu
             Console.WriteLine("+-------------------------------+");
             Console.WriteLine("     Use ↑↓ for navigation       ");
 
-            // Key Validation
-            var userKey = Console.ReadKey().Key;
-            while (true)
-            {
-                ConsoleKey[] validKeys = new ConsoleKey[]
-                {
-                    ConsoleKey.DownArrow,
-                    ConsoleKey.UpArrow,
-                    ConsoleKey.Enter
-                };
-                if (validKeys.Contains(userKey))
-                    break;
-                else
-                    userKey = Console.ReadKey(true).Key;
-            }
+            var userKey = VerticalNavigationValidation();
 
             switch (userKey)
             {
