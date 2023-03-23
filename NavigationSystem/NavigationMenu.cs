@@ -1,3 +1,4 @@
+using static NavigationSystem.Utilities.KeyAction;
 using static NavigationSystem.Utilities.KeyValidation;
 
 namespace NavigationSystem;
@@ -35,18 +36,7 @@ public static class NavigationMenu
 
             var userKey = VerticalNavigationValidation();
 
-            switch (userKey)
-            {
-                // Key actions
-                case ConsoleKey.DownArrow when selected < options.Length - 1: selected++; break;
-                case ConsoleKey.UpArrow when selected > 0: selected--; break;
-                // Infinity scroll
-                case ConsoleKey.DownArrow when selected == options.Length - 1: selected = 0; break;
-                case ConsoleKey.UpArrow when selected == 0: selected = (byte)(options.Length - 1); break;
-                // Enter select
-                case ConsoleKey.Enter: Console.Clear(); return selected;
-                default: continue;
-            }
+            selected = VerticalNavigationAction(userKey, selected, options.Length);
         }
     }
 }
